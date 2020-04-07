@@ -1,0 +1,20 @@
+#Fresco play ansible hands on answers
+
+Create an inventory file named myhosts
+vi myhosts
+
+Add host01 as the host name under the group [group1] where host1 should be the ansible ubuntu ssh user.
+[group1]
+host01 ansible_ssh_user=ubuntu
+
+Now, stop a sudo service using state argument
+ansible group1 -i ./myhosts -m service -a "name=sudo state=stopped"
+
+Also, start a sudo service using state argument
+ansible group1 -i ./myhosts -m service -a "name=sudo state=started"
+
+Write an ansible command to create a directory on remote host name myRemoteFolder
+ansible host01 -i ./myhosts -m file -a "dest=myRemoteFolder state=directory"
+
+Write an ansible command to check the list of files and folders on remote host
+ansible host01 -i ./myhosts -m shell -a "ls"
